@@ -8,7 +8,7 @@
     <script src="static/js/jquery.min.js"></script>
 </head>
 <body>
-<div id="main" style="width:1000px;height:800px"></div>
+<div id="main" style="width:960px;height:600px"></div>
 <script type="text/javascript">
     var myChart = echarts.init(document.getElementById('main'));
     var categories = [{name:"贾家荣国府"},{name:"贾家宁国府"},{name:"王家"},{name:"史家"},{name:"薛家"},{name:"林家"},{name:"其他"}];
@@ -126,6 +126,7 @@
                 normal: {
                     width: 2,
                     color: '#4b565b',
+                    curveness : 0.5,
                 }
             },
             edgeLabel: {
