@@ -24,30 +24,37 @@ class Hlp:
                 sent_list[0].append(item)
                 sent_list[1].append(words_list[index])
         if sent_list[0] == ['nh','nh','r','n']:
+            final_list.append(1)
             final_list.append(sent_list[1][0])
             final_list.append(sent_list[1][1])
             final_list.append('?')
         elif sent_list[0] == ['nh','nh']:
+            final_list.append(1)
             final_list.append(sent_list[1][0])
             final_list.append(sent_list[1][1])
             final_list.append('?')
         elif sent_list[0] == ['nh','r','n']:
+            final_list.append(2)
             final_list.append(sent_list[1][0])
             final_list.append('?')
             final_list.append(sent_list[1][2])
         elif sent_list[0] == ['r','n','nh']:
+            final_list.append(2)
             final_list.append(sent_list[1][2])
             final_list.append('?')
             final_list.append(sent_list[1][1])
         elif sent_list[0] == ['nh','n','r']:
+            final_list.append(3)
             final_list.append('?')
             final_list.append(sent_list[1][0])
             final_list.append(sent_list[1][1])
         elif sent_list[0] == ['r','nh','n']:
+            final_list.append(3)
             final_list.append('?')
             final_list.append(sent_list[1][1])
             final_list.append(sent_list[1][2])
         elif sent_list[0] == ['nh','n']:
+            final_list.append(3)
             final_list.append('?')
             final_list.append(sent_list[1][0])
             final_list.append(sent_list[1][1])
