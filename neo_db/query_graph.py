@@ -7,6 +7,7 @@ def buildNodes(nodeRecord):
         data = {"name": str(nodeRecord['p.Name']), "clan": str(nodeRecord['p.Clan'])}
         return {"data": data}
 
+
 def buildEdges(relationRecord):
     data = {"source": str(relationRecord['p.Name']), 
     "target": str(relationRecord['n.Name']),
@@ -19,10 +20,36 @@ def query_all():
     return nodes,edges
 
 def query_name(name):
-    data = graph.run(
-    "match(p)-[r]->(n:Person{Name:'%s'}) return  p.Name,r.relation,n.Name,p.cate,n.cate\
+    nodes = map(buildNodes, graph.run("match(p)-[r]->(n:Person{Name:'%s'}) return p.Name,n.Name,p.Clan,n.Clan\
         Union all\
-    match(p:Person {Name:'%s'}) -[r]->(n) return p.Name, r.relation, n.Name, p.cate, n.cate" % (name,name)
-    )
-    data = list(data)
-    return data
+    match(p:Person {Name:'%s'}) -[r]->(n) return p.Name,n.Name,p.Clan,n.Clan" % (name,name)).data())
+
+    edges = map(buildEdges, graph.run("match(p)-[r]->(n:Person{Name:'%s'}) return p.Name, r.relation,n.Name\
+        Union all\
+    match(p:Person {Name:'%s'}) -[r]->(n) return p.Name, r.relation,n.Name" % (name,name)).data())
+    return nodes,edges
+
+def query_by_sentence(sent_list):
+    print(sent_list)
+    if(sent_list[0]==1):
+        nodes = map(buildNodes, graph.run("match(p:Person {Name:'%s'}) -[r]->(n:Person {Name:'%s'}) return p.Name,n.Name,p.Clan,n.Clan\
+        Union all\
+    match(p:Person {Name:'%s'}) -[r]->(n:Person {Name:'%s'}) return p.Name,n.Name,p.Clan,n.Clan" % (sent_list[1],sent_list[2],sent_list[2],sent_list[1])).data())
+        edges = map(buildEdges, graph.run("match(p:Person {Name:'%s'}) -[r]->(n:Person {Name:'%s'}) return p.Name, r.relation,n.Name\
+        Union all\
+    match(p:Person {Name:'%s'}) -[r]->(n:Person {Name:'%s'}) return p.Name, r.relation,n.Name" % (sent_list[1],sent_list[2],sent_list[2],sent_list[1])).data())
+    elif(sent_list[0]==2):
+        nodes = map(buildNodes, graph.run("match(n:Person{Name:'%s'})-[r:%s{relation: '%s'}]->(p) return p.Name,n.Name,p.Clan,n.Clan \
+        Union all\
+            match(p:Person{Name:'%s'})-[r:%s{relation: '%s'}]->(n) \
+         return p.Name,n.Name,p.Clan,n.Clan" % (sent_list[1],sent_list[3],sent_list[3],sent_list[1],sent_list[3],sent_list[3])).data())
+        edges = map(buildEdges, graph.run("match(p:Person{Name:'%s'})-[r:%s{relation: '%s'}]->(n) return p.Name, r.relation,n.Name" % (sent_list[1],sent_list[3],sent_list[3])).data())
+    elif(sent_list[0]==3):
+        nodes = map(buildNodes, graph.run("match(n)-[r:%s{relation: '%s'}]->(p:Person{Name:'%s'}) return p.Name,n.Name,p.Clan,n.Clan \
+        Union all\
+            match(p)-[r:%s{relation: '%s'}]->(n:Person{Name:'%s'}) \
+         return p.Name,n.Name,p.Clan,n.Clan" % (sent_list[3],sent_list[3],sent_list[2],sent_list[3],sent_list[3],sent_list[2])).data())
+        edges = map(buildEdges, graph.run("match(p)-[r:%s{relation: '%s'}]->(n:Person{Name:'%s'}) return p.Name, r.relation,n.Name" % (sent_list[3],sent_list[3],sent_list[2])).data())
+    else:
+        pass
+    return nodes,edges

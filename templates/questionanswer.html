@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="margin-top: 15%;text-align: center;">
+    <form method="POST">
+      <div class="form-group" style="margin-bottom: 5%;">
+        <h2 style="margin-bottom: 5%;">智能问答系统:</h2>
+        <input type="text" class="form-control" id="sentence" name="sentence" required placeholder="贾宝玉的父亲是谁">
+      </div>
+      <button type="submit" class="btn btn-outline-dark">查询！</button>
+    </form>
+  </div>
+{% endblock %}

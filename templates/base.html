@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>《红楼梦》知识图谱</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="static/js/echarts.min.js"></script>
+  <script src="static/js/jquery.min.js"></script>
+  <script src="static/js/jsontograph.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="/">
+    <img src="https://static.runoob.com/images/mix/bird.jpg" alt="logo" style="width:40px;">
+    红楼梦知识图谱
+  </a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="/allrelation">人物关系全貌</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/searchedrela">名字检索</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/qa">问答系统</a>
+    </li>
+  </ul>
+</nav>
+{% block content %}
+{% endblock %}
+</body>
+</html>

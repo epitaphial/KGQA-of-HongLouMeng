@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="margin-top: 15%;text-align: center;">
+    <form method="POST">
+      <div class="form-group" style="margin-bottom: 5%;">
+        <h2 style="margin-bottom: 5%;">请输入查询的名字:</h2>
+        <input required type="text" class="form-control" id="name" name="name" placeholder="贾宝玉">
+      </div>
+      <button type="submit" class="btn btn-outline-dark">查询！</button>
+    </form>
+  </div>
+{% endblock %}
