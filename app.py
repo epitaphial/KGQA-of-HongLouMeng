@@ -11,7 +11,12 @@ def hlm_index():
 @app.route('/getallrela')
 def get_all_relation():
     nodes,edges = query_all()
-    return jsonify({"nodes": list(nodes), "edges": list(edges)})
+    nodesList = list(nodes)
+    nodeslist2 = list()
+    for li in nodesList:
+        if li not in nodeslist2 and li != None:
+            nodeslist2.append(li)
+    return jsonify({"nodes": nodesList, "edges": list(edges)})
 
 @app.route('/allrelation')
 def show_all_relation():
@@ -33,7 +38,15 @@ def get_rela_by_name(name):
     for li in nodesList:
         if li not in nodeslist2 and li != None:
             nodeslist2.append(li)
-    return jsonify({"nodes": nodeslist2, "edges": list(edges)})
+    nodeslist3 = list()
+    emptylist = []
+    for i in nodeslist2:
+        if (type(i) == type(emptylist)):
+            if i[0] not in nodeslist3:
+                nodeslist3.append(i[0])
+            if i[1] not in nodeslist3:
+                nodeslist3.append(i[1])
+    return jsonify({"nodes": nodeslist3, "edges": list(edges)})
 
 @app.route('/qa',methods=['GET', 'POST'])
 def show_searched_sent():
@@ -53,10 +66,17 @@ def get_rela_by_sentence(sentence):
     for li in nodesList:
         if li not in nodeslist2 and li != None:
             nodeslist2.append(li)
-
+    nodeslist3 = list()
+    emptylist = []
+    for i in nodeslist2:
+        if (type(i) == type(emptylist)):
+            if i[0] not in nodeslist3:
+                nodeslist3.append(i[0])
+            if i[1] not in nodeslist3:
+                nodeslist3.append(i[1])
     edgesList = list(edges)
     edgeslist2 = list()
     for li in edgesList:
         if li not in edgeslist2 and li != None:
             edgeslist2.append(li)
-    return jsonify({"nodes": nodeslist2, "edges": edgeslist2})
+    return jsonify({"nodes": nodeslist3, "edges": edgeslist2})

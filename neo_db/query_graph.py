@@ -3,9 +3,17 @@ from neo_db.config import graph
 def buildNodes(nodeRecord):
     if nodeRecord['p.Clan'] == None:
         return
+    data = {"name": str(nodeRecord['p.Name']), "clan": str(nodeRecord['p.Clan'])}
+    rdata1 = {"data":data}
+    if('n.Name' in nodeRecord and 'n.Clan' in nodeRecord):
+        if nodeRecord['n.Clan'] == None:
+            return
+        data2 = {"name": str(nodeRecord['n.Name']), "clan": str(nodeRecord['n.Clan'])}
+        rdata2 = {"data":data2}
+        return [rdata1,rdata2]
     else:
-        data = {"name": str(nodeRecord['p.Name']), "clan": str(nodeRecord['p.Clan'])}
         return {"data": data}
+
 
 
 def buildEdges(relationRecord):
@@ -27,10 +35,10 @@ def query_name(name):
     edges = map(buildEdges, graph.run("match(p)-[r]->(n:Person{Name:'%s'}) return p.Name, r.relation,n.Name\
         Union all\
     match(p:Person {Name:'%s'}) -[r]->(n) return p.Name, r.relation,n.Name" % (name,name)).data())
+    
     return nodes,edges
 
 def query_by_sentence(sent_list):
-    print(sent_list)
     if(sent_list[0]==1):
         nodes = map(buildNodes, graph.run("match(p:Person {Name:'%s'}) -[r]->(n:Person {Name:'%s'}) return p.Name,n.Name,p.Clan,n.Clan\
         Union all\
