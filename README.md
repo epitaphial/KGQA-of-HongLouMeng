@@ -70,7 +70,19 @@ flask run --host:0.0.0.0
 
 ### Windows平台
 
-类linux安装过程。
+```shell
+#python环境要求：3.6&3.7
+#安装相应的库
+pip install py2neo
+pip install flask
+pip install pyltp(建议用现成的轮子安装)
+
+#打开neo4j数据库并设置好数据库用户名密码后，修改neo_db目录下config.py相应配置。下载ltp语言模型，在app.py内设置好路径，htp目录运行test.py，应该正常运行，返回项目根目录。
+flask run
+#打开localhost:5000可看到运行项目
+```
+
+
 
 ## TODO
 
