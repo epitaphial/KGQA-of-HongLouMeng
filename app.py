@@ -61,22 +61,36 @@ def get_rela_by_sentence(sentence):
     nlp = Hlp("../ltp_data_v3.4.0") #ltp模块的路径
     sent_list = nlp.process_ques(sentence); #nh nh r n
     nodes,edges = query_by_sentence(sent_list)
-    nodesList = list(nodes)
-    nodeslist2 = list()
-    for li in nodesList:
-        if li not in nodeslist2 and li != None:
-            nodeslist2.append(li)
-    nodeslist3 = list()
     emptylist = []
-    for i in nodeslist2:
-        if (type(i) == type(emptylist)):
-            if i[0] not in nodeslist3:
-                nodeslist3.append(i[0])
-            if i[1] not in nodeslist3:
-                nodeslist3.append(i[1])
-    edgesList = list(edges)
-    edgeslist2 = list()
-    for li in edgesList:
-        if li not in edgeslist2 and li != None:
-            edgeslist2.append(li)
+    if(type(nodes) == type(emptylist)):
+        nodeslist3 = list()
+        for li in nodes:
+            if li not in nodeslist3 and li != None:
+                nodeslist3.append(li)
+    else:
+        nodesList = list(nodes)
+        nodeslist2 = list()
+        for li in nodesList:
+            if li not in nodeslist2 and li != None:
+                nodeslist2.append(li)
+        nodeslist3 = list()
+        for i in nodeslist2:
+            if (type(i) == type(emptylist)):
+                if i[0] not in nodeslist3:
+                    nodeslist3.append(i[0])
+                if i[1] not in nodeslist3:
+                    nodeslist3.append(i[1])
+
+    if (type(edges) == type(emptylist)):
+        edgeslist2 = list()
+        for li in edges:
+            if li not in edgeslist2 and li != None:
+                edgeslist2.append(li)
+    else:
+        edgesList = list(edges)
+        edgeslist2 = list()
+        for li in edgesList:
+            if li not in edgeslist2 and li != None:
+                edgeslist2.append(li)
+    #print(nodeslist3)
     return jsonify({"nodes": nodeslist3, "edges": edgeslist2})
