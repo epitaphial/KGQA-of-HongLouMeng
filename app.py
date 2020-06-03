@@ -58,7 +58,7 @@ def show_searched_sent():
 
 @app.route('/qa/<sentence>')
 def get_rela_by_sentence(sentence):
-    nlp = Hlp("../ltp_data_v3.4.0") #ltp模块的路径
+    nlp = Hlp("../ltp_data_v3.4.0","./raw_data") #ltp模块的路径
     sent_list = nlp.process_ques(sentence); #nh nh r n
     nodes,edges = query_by_sentence(sent_list)
     emptylist = []

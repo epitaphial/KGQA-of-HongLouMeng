@@ -3,19 +3,22 @@ import os
 from pyltp import Segmentor,Postagger
 
 class Hlp:
-    def __init__(self, ltp_path):
+    def __init__(self, ltp_path, user_path):
         cws_model_path = os.path.join(ltp_path, 'cws.model')  # 分词模型路径，模型名称为`cws.model`
+        user_model_path = os.path.join(user_path, 'userdict.txt') #用户自定义字典
         pos_model_path = os.path.join(ltp_path, 'pos.model')  # 词性标注模型路径，模型名称为`pos.model`]
         self.segmentor = Segmentor()  # 初始化实例
-        self.segmentor.load(cws_model_path)  # 加载模型
+        self.segmentor.load_with_lexicon(cws_model_path,user_model_path)  # 加载模型
         self.postagger = Postagger() # 初始化实例
-        self.postagger.load(pos_model_path)  # 加载模型
+        self.postagger.load_with_lexicon(pos_model_path,user_model_path)  # 加载模型
 
     def process_ques(self,question):
         words = self.segmentor.segment(question)  # 分词
         words_list = list(words)
         postags = self.postagger.postag(words_list)  # 词性标注
         postags_list = list(postags)
+        print(words_list)
+        print(postags_list)
         sent_list = [[],[]]
         expect_list = ['n','nh','r']
         final_list = []
