@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
-
+{% block link %}
+<li   class="colorlib-active"><a href="/">主页</a></li>
+<li><a href="/allrelation">人物关系全貌</a></li>
+<li><a href="/searchedrela">名字检索</a></li>
+<li><a href="/qa">问答系统</a></li>
+{% endblock %}
 {% block content %}
 <div class="container" id="indexwrapper">
-    <div class="clearfix" style="margin-bottom: 10px;"></div>
+    <div class="clearfix" style="margin-bottom: 10px;margin-top: 10%;"></div>
     <div class="row">
       <div class="col-12" style="text-align: center;">
-        <div style="font-size: 500%;font-family: 'Times New Roman', Times, serif;">红楼梦</div>
+        <div class="onlyhead">红楼梦</div>
       </div>
     </div>
     <div class="clearfix" style="margin-bottom: 10px;"></div>

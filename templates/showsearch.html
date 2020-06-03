@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
-
+{% block link %}
+<li><a href="/">主页</a></li>
+<li><a href="/allrelation">人物关系全貌</a></li>
+<li  class="colorlib-active"><a href="/searchedrela">名字检索</a></li>
+<li><a href="/qa">问答系统</a></li>
+{% endblock %}
 {% block content %}
-<div id="main" style="height: 650%;width: 100%;">
+<div id="main" style="height: 1000%;width: 100%;">
 </div>
 <script type="text/javascript">showGraph("{{ thename }}",false);</script>
 {% endblock %}

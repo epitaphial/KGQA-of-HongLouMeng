@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>《红楼梦》知识图谱</title>
+  <title>红楼梦知识图谱</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
-  <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+
+  <link rel="stylesheet" href="/static/css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/animate.css">
+
+  <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/static/css/magnific-popup.css">
+
+  <link rel="stylesheet" href="/static/css/aos.css">
+
+  <link rel="stylesheet" href="/static/css/ionicons.min.css">
+
+  <link rel="stylesheet" href="/static/css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="/static/css/jquery.timepicker.css">
+
+
+  <link rel="stylesheet" href="/static/css/flaticon.css">
+  <link rel="stylesheet" href="/static/css/icomoon.css">
+  <link rel="stylesheet" href="/static/css/style.css">
   <script src="static/js/echarts.min.js"></script>
   <script src="static/js/jquery.min.js"></script>
   <script src="static/js/jsontograph.js"></script>
   <style>
     body {
-      background: url(/static/images/base.jpg) no-repeat center fixed;
+      background: url(/static/images/base.png) no-repeat center fixed;
       background-size: cover;
       -moz-user-select: none;
       -webkit-user-select: none;
@@ -20,36 +39,75 @@
       -khtml-user-select: none;
       user-select: none;
     }
-  
+
     #indexwrapper {
       color:black;
       padding: 5%;
       margin-top: 5%;
     }
+    .onlyhead
+    {
+      font-size: 500%;
+      font-family:yegenyou;
+
+    }
+    @font-face{
+      font-family:yegenyou;
+      scr:url("/static/fonts/xindexingcao57.ttf");
+    }
   </style>
 </head>
-
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <!-- Brand/logo -->
-  <a class="navbar-brand" href="/">
-    红楼梦知识图谱
-  </a>
-  
-  <!-- Links -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="/allrelation">人物关系全貌</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/searchedrela">名字检索</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/qa">问答系统</a>
-    </li>
-  </ul>
-</nav>
-{% block content %}
-{% endblock %}
+
+  <div id="colorlib-page">
+    <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+    <!--边栏开始-->
+    <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+      <h1 id="colorlib-logo"><a href="/">红楼梦<span>.</span></a></h1>
+      <nav id="colorlib-main-menu" role="navigation">
+        <ul>
+          {% block link %}
+          {% endblock %}        
+        </ul>
+      </nav>
+
+      <div class="colorlib-footer">
+        Copyright &copy;
+        <script>document.write(new Date().getFullYear());</script> 
+        All rights reserved
+        <span></span>
+        <i class="icon-heart" aria-hidden="true"></i>
+        by 
+        <a href="#" target="_blank">人工智能物联17</a>
+      </div>
+    </aside> 
+    <!-- 边栏结束 -->
+    <div id="colorlib-main">
+      <section class="ftco-section-2">
+        {% block content %}
+        {% endblock %}
+        
+      </section>
+    </div><!-- END COLORLIB-MAIN -->
+  </div><!-- END COLORLIB-PAGE -->
+
+
+  <script src="/static/js/jquery.min.js"></script>
+  <script src="/static/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/static/js/popper.min.js"></script>
+  <script src="/static/js/bootstrap.min.js"></script>
+  <script src="/static/js/jquery.easing.1.3.js"></script>
+  <script src="/static/js/jquery.waypoints.min.js"></script>
+  <script src="/static/js/jquery.stellar.min.js"></script>
+  <script src="/static/js/owl.carousel.min.js"></script>
+  <script src="/static/js/jquery.magnific-popup.min.js"></script>
+  <script src="/static/js/aos.js"></script>
+  <script src="/static/js/jquery.animateNumber.min.js"></script>
+  <script src="/static/js/bootstrap-datepicker.js"></script>
+  <script src="/static/js/jquery.timepicker.min.js"></script>
+  <script src="/static/js/scrollax.min.js"></script>
+  <script src="/static/js/main.js"></script>
+
+
 </body>
 </html>
