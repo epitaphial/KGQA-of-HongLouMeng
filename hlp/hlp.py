@@ -7,18 +7,26 @@ class Hlp:
         cws_model_path = os.path.join(ltp_path, 'cws.model')  # 分词模型路径，模型名称为`cws.model`
         user_model_path = os.path.join(user_path, 'userdict.txt') #用户自定义字典
         pos_model_path = os.path.join(ltp_path, 'pos.model')  # 词性标注模型路径，模型名称为`pos.model`]
+        sym_dict_path = os.path.join(user_path, 'reladict.txt')
         self.segmentor = Segmentor()  # 初始化实例
         self.segmentor.load_with_lexicon(cws_model_path,user_model_path)  # 加载模型
         self.postagger = Postagger() # 初始化实例
         self.postagger.load_with_lexicon(pos_model_path,user_model_path)  # 加载模型
+        #加载同义词库
+        self.list1 = []
+        with open(sym_dict_path, mode='r', encoding='UTF-8') as f:
+            for line in f.readlines():
+                rela_array=line.strip("\n").split(",")
+                tmplist = []
+                for rela in rela_array:
+                    tmplist.append(rela)
+                self.list1.append(tmplist)
 
     def process_ques(self,question):
         words = self.segmentor.segment(question)  # 分词
         words_list = list(words)
         postags = self.postagger.postag(words_list)  # 词性标注
         postags_list = list(postags)
-        print(words_list)
-        print(postags_list)
         sent_list = [[],[]]
         expect_list = ['n','nh','r']
         final_list = []
@@ -63,6 +71,11 @@ class Hlp:
             final_list.append(sent_list[1][1])
         else:
             pass
+
+        #同义词替换
+        for i in self.list1:
+            if final_list[3] in i:
+                final_list[3] = i[0]
         return final_list
 
     def __del__(self):
